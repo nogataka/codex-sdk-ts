@@ -51,7 +51,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -60,7 +64,7 @@ jobs:
           path: dist/
 
       - name: Publish to npm
-        run: npm publish --access public --ignore-scripts
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
