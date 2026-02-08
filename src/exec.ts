@@ -238,6 +238,9 @@ function flattenConfigOverrides(
     return;
   }
 
+  // Keys that should be serialized as inline TOML tables (not flattened)
+  const inlineTableKeys = new Set(["mcp_servers"]);
+
   for (const [key, child] of entries) {
     if (!key) {
       throw new Error("Codex config override keys must be non-empty strings");
@@ -246,7 +249,10 @@ function flattenConfigOverrides(
       continue;
     }
     const path = prefix ? `${prefix}.${key}` : key;
-    if (isPlainObject(child)) {
+    // mcp_servers and similar keys should be serialized as inline tables
+    if (inlineTableKeys.has(key) && isPlainObject(child)) {
+      overrides.push(`${path}=${toTomlValue(child, path)}`);
+    } else if (isPlainObject(child)) {
       flattenConfigOverrides(child, path, overrides);
     } else {
       overrides.push(`${path}=${toTomlValue(child, path)}`);

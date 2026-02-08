@@ -4,6 +4,15 @@ Lightweight TypeScript SDK for the OpenAI Codex agent.
 
 This is a fork of the official `@openai/codex-sdk` that **does not bundle the Codex binary**. Instead, it uses the system-installed `codex` command from PATH.
 
+## Related SDKs
+
+| Language | Package | Repository |
+|----------|---------|------------|
+| **TypeScript** | [`codex-sdk-ts`](https://www.npmjs.com/package/codex-sdk-ts) | [nogataka/codex-sdk-ts](https://github.com/nogataka/codex-sdk-ts) |
+| **Python** | [`codex-sdk-py`](https://pypi.org/project/codex-sdk-py/) | [nogataka/codex-sdk-py](https://github.com/nogataka/codex-sdk-py) |
+
+Both SDKs have identical features and API design. Choose based on your preferred language.
+
 ## Prerequisites
 
 Before using this SDK, you must have the Codex CLI installed and available in your system PATH:
@@ -156,3 +165,26 @@ const codex = new Codex({
 ```
 
 Thread options still take precedence for overlapping settings because they are emitted after these global overrides.
+
+### MCP Server Configuration
+
+Configure [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers to extend Codex's capabilities with external tools.
+
+```typescript
+const codex = new Codex({
+  config: {
+    mcp_servers: {
+      playwright: {
+        command: "npx",
+        args: ["-y", "@playwright/mcp@latest"]
+      },
+      filesystem: {
+        command: "npx",
+        args: ["-y", "@anthropic/mcp-server-filesystem@latest", "/path/to/dir"]
+      }
+    }
+  }
+});
+```
+
+The `mcp_servers` configuration is serialized as an inline TOML table, allowing you to dynamically configure MCP servers without modifying global Codex settings.
