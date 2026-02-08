@@ -4,6 +4,16 @@ Lightweight TypeScript SDK for the OpenAI Codex agent.
 
 This is a fork of the official `@openai/codex-sdk` that **does not bundle the Codex binary**. Instead, it uses the system-installed `codex` command from PATH.
 
+## Compatibility
+
+| Item | Version |
+|------|---------|
+| **Based on** | [@openai/codex-sdk](https://github.com/openai/codex/tree/main/sdk/typescript) @ commit `9327e99b2` |
+| **Codex CLI** | v0.98.0+ (requires `--json` flag support) |
+| **Node.js** | 18+ |
+
+This SDK is periodically synced with the upstream OpenAI Codex SDK. Check the [upstream sync workflow](.github/workflows/upstream-sync.yml) for update status.
+
 ## Related SDKs
 
 | Language | Package | Repository |

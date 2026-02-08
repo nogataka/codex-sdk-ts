@@ -1,6 +1,6 @@
 {
   "name": "codex-sdk-ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "TypeScript SDK for Codex APIs (lightweight version without bundled binary).",
   "repository": {
     "type": "git",
