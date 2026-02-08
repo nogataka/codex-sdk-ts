@@ -23,6 +23,21 @@ This SDK is periodically synced with the upstream OpenAI Codex SDK. Check the [u
 
 Both SDKs have identical features and API design. Choose based on your preferred language.
 
+## Compatibility with Official OpenAI SDK
+
+This SDK is based on the [official OpenAI Codex TypeScript SDK](https://github.com/openai/codex/tree/main/sdk/typescript), with **all features, data structures, and behaviors fully implemented**.
+
+**Fully ported from official SDK:**
+- All 8 event types (ThreadStartedEvent, TurnCompletedEvent, etc.)
+- All 8 item types (AgentMessageItem, CommandExecutionItem, etc.)
+- All 4 enums (ApprovalMode, SandboxMode, ModelReasoningEffort, WebSearchMode)
+- CLI argument construction logic, environment variable handling, TOML config serialization
+
+**Additional features unique to this SDK:**
+- Lightweight design without bundled binary (uses system-installed Codex CLI)
+- MCP server configuration via `--config` overrides
+- Upstream sync workflow for tracking official SDK changes
+
 ## Prerequisites
 
 Before using this SDK, you must have the Codex CLI installed and available in your system PATH:

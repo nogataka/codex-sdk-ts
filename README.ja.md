@@ -23,6 +23,21 @@ OpenAI Codex エージェント向け軽量 TypeScript SDK。
 
 両 SDK は同一の機能と API 設計を持っています。お好みの言語をお選びください。
 
+## OpenAI 公式 SDK との互換性
+
+この SDK は [OpenAI 公式 Codex TypeScript SDK](https://github.com/openai/codex/tree/main/sdk/typescript) をベースにしており、**すべての機能・データ構造・動作が漏れなく実装されています**。
+
+**公式 SDK から完全移植:**
+- 全 8 種のイベント型（ThreadStartedEvent, TurnCompletedEvent など）
+- 全 8 種のアイテム型（AgentMessageItem, CommandExecutionItem など）
+- 全 4 種の Enum（ApprovalMode, SandboxMode, ModelReasoningEffort, WebSearchMode）
+- CLI 引数の構築ロジック、環境変数の処理、TOML 設定シリアライズ
+
+**本 SDK 独自の追加機能:**
+- バイナリ同梱なしの軽量設計（システムにインストールされた Codex CLI を使用）
+- `--config` オーバーライドによる MCP サーバー設定
+- 公式 SDK の変更を追跡する Upstream Sync ワークフロー
+
 ## 前提条件
 
 この SDK を使用する前に、Codex CLI がインストールされ、システムの PATH で利用可能である必要があります:
